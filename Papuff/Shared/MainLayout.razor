@@ -1,0 +1,57 @@
+﻿@inherits LayoutComponentBase
+
+<MatAppBarContainer>
+    <MatAppBar Fixed="true">
+        <MatAppBarRow>
+            <MatAppBarSection>
+                <MatIconButton Class="navbar-toggler-icon" Icon="menu" @onclick="Toggle"></MatIconButton>
+                <MatAppBarTitle>Papuff</MatAppBarTitle>
+            </MatAppBarSection>
+            <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                <NavLink class="text-white nav-link" href="" Match="NavLinkMatch.All">
+                    Dashboard
+                </NavLink>
+                <MatIconButton Icon="favorite"></MatIconButton>
+            </MatAppBarSection>
+        </MatAppBarRow>
+    </MatAppBar>
+
+    <MatDrawerContainer Style="width: 100vw; height: 100vh;">
+        <MatDrawer @bind-Opened="@Opened" Mode="@MatDrawerMode.Modal">
+            <MatNavMenu>
+                <MatNavItem href=""><MatIcon Icon="grade"></MatIcon>&nbsp; Dashboard </MatNavItem>
+                <MatDivider></MatDivider>
+                <MatNavItem href="counter"><MatIcon Icon="face"></MatIcon>&nbsp; Item 5</MatNavItem>
+                <MatNavSubMenu>
+                    <MatNavSubMenuHeader>
+                        <MatNavItem AllowSelection="false"><MatIcon Icon="explore"></MatIcon>&nbsp; Item 6</MatNavItem>
+                    </MatNavSubMenuHeader>
+                    <MatNavSubMenuList>
+                        <MatNavItem Disabled="true" Href="#">Item 6.A</MatNavItem>
+                        <MatNavItem>Item 6.B</MatNavItem>
+                        <MatNavItem href="fetchdata">Item 6.C</MatNavItem>
+                    </MatNavSubMenuList>
+                </MatNavSubMenu>
+            </MatNavMenu>
+        </MatDrawer>
+        <MatDrawerContent>
+            <MatAppBarContent>
+                <div class="main">
+                    <div class="content px-4">
+                        @Body
+                    </div>
+                </div>
+            </MatAppBarContent>
+        </MatDrawerContent>
+    </MatDrawerContainer>
+</MatAppBarContainer>
+
+@code
+{
+    bool Opened = true;
+
+    void Toggle() {
+        Opened = !Opened;
+    }
+
+}
